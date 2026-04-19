@@ -1,0 +1,102 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: ${BIOCONTROL_MYSQL_CONTAINER_NAME:-biocontrol-mysql}
+    command:
+      - --character-set-server=${BIOCONTROL_DB_CHARSET:-utf8mb4}
+      - --collation-server=${BIOCONTROL_DB_COLLATION:-utf8mb4_unicode_ci}
+    environment:
+      TZ: ${BIOCONTROL_TZ:-Asia/Shanghai}
+      MYSQL_ROOT_PASSWORD: ${BIOCONTROL_MYSQL_ROOT_PASSWORD:?请先运行 deploy.sh 或手动创建 .env 文件}
+      MYSQL_DATABASE: ${BIOCONTROL_DB_NAME:-biocontrol}
+      MYSQL_USER: ${BIOCONTROL_DB_USER:-biocontrol}
+      MYSQL_PASSWORD: ${BIOCONTROL_DB_PASSWORD:?请先运行 deploy.sh 或手动创建 .env 文件}
+    volumes:
+      - ${BIOCONTROL_MYSQL_VOLUME_NAME:-biocontrol-mysql-data}:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+    stop_grace_period: 30s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 256
+    logging:
+      driver: json-file
+      options:
+        max-size: ${BIOCONTROL_LOG_MAX_SIZE:-10m}
+        max-file: ${BIOCONTROL_LOG_MAX_FILE:-3}
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${BIOCONTROL_BACKEND_IMAGE_NAME:-biocontrol-backend:latest}
+    container_name: ${BIOCONTROL_BACKEND_CONTAINER_NAME:-biocontrol-backend}
+    init: true
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      TZ: ${BIOCONTROL_TZ:-Asia/Shanghai}
+      BIOCONTROL_HTTP_ADDR: ${BIOCONTROL_HTTP_ADDR:-0.0.0.0}
+      BIOCONTROL_HTTP_PORT: ${BIOCONTROL_HTTP_PORT:-8080}
+      BIOCONTROL_DB_HOST: ${BIOCONTROL_DB_HOST:-mysql}
+      BIOCONTROL_DB_PORT: ${BIOCONTROL_DB_PORT:-3306}
+      BIOCONTROL_DB_NAME: ${BIOCONTROL_DB_NAME:-biocontrol}
+      BIOCONTROL_DB_USER: ${BIOCONTROL_DB_USER:-biocontrol}
+      BIOCONTROL_DB_PASSWORD: ${BIOCONTROL_DB_PASSWORD:?请先运行 deploy.sh 或手动创建 .env 文件}
+      BIOCONTROL_DB_CHARSET: ${BIOCONTROL_DB_CHARSET:-utf8mb4}
+      BIOCONTROL_DB_COLLATION: ${BIOCONTROL_DB_COLLATION:-utf8mb4_unicode_ci}
+      BIOCONTROL_DB_MAX_RETRIES: ${BIOCONTROL_DB_MAX_RETRIES:-30}
+      BIOCONTROL_DB_RETRY_DELAY_SECONDS: ${BIOCONTROL_DB_RETRY_DELAY_SECONDS:-2}
+      BIOCONTROL_SERVE_SPA: "false"
+    expose:
+      - "${BIOCONTROL_HTTP_PORT:-8080}"
+    restart: unless-stopped
+    stop_grace_period: 20s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 256
+    logging:
+      driver: json-file
+      options:
+        max-size: ${BIOCONTROL_LOG_MAX_SIZE:-10m}
+        max-file: ${BIOCONTROL_LOG_MAX_FILE:-3}
+
+  frontend:
+    build:
+      context: .
+      dockerfile: deploy/docker/frontend.Dockerfile
+    image: ${BIOCONTROL_FRONTEND_IMAGE_NAME:-biocontrol-frontend:latest}
+    container_name: ${BIOCONTROL_FRONTEND_CONTAINER_NAME:-biocontrol-frontend}
+    init: true
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${BIOCONTROL_FRONTEND_PUBLISHED_PORT:-8080}:8080"
+    restart: unless-stopped
+    stop_grace_period: 20s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 256
+    logging:
+      driver: json-file
+      options:
+        max-size: ${BIOCONTROL_LOG_MAX_SIZE:-10m}
+        max-file: ${BIOCONTROL_LOG_MAX_FILE:-3}
+
+volumes:
+  biocontrol-mysql-data:
+    name: ${BIOCONTROL_MYSQL_VOLUME_NAME:-biocontrol-mysql-data}
+

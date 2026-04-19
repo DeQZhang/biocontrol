@@ -1,0 +1,150 @@
+{
+  "prefix": "PF-27j9in",
+  "baseline": {
+    "renderMode": "default",
+    "totalDurationMs": 1182.285,
+    "filteredTreeDataMs": 26.2,
+    "flatRowStateMs": 0.9,
+    "autoExpandDecisionMs": 0.1,
+    "domCommitMs": 723.4,
+    "residualMs": 431.685,
+    "recordCount": 5,
+    "records": [
+      {
+        "scope": "BatchTable",
+        "name": "filteredTreeData",
+        "durationMs": 26.2,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "keyword": "pf-27j9in",
+        "searching": true,
+        "rootCount": 76
+      },
+      {
+        "scope": "BatchTable",
+        "name": "searchAutoExpandedRowKeys",
+        "durationMs": 0.1,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "page": 1,
+        "pageSize": 10,
+        "rootCount": 10,
+        "rowLimit": 160,
+        "searching": true
+      },
+      {
+        "scope": "BatchTable",
+        "name": "flatRowState",
+        "durationMs": 0.8,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "page": 1,
+        "pageSize": 10,
+        "rootCount": 10,
+        "rowLimit": 160,
+        "searching": true
+      },
+      {
+        "scope": "BatchTable",
+        "name": "flatRowState",
+        "durationMs": 0.1,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "page": 1,
+        "pageSize": 10,
+        "rootCount": 10,
+        "rowLimit": 160,
+        "searching": true
+      },
+      {
+        "scope": "BatchTable",
+        "name": "searchDomCommit",
+        "durationMs": 723.3999999761581,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "reason": "search-first-screen",
+        "rows": 160,
+        "rowLimit": 160,
+        "searching": true,
+        "lightweight": false,
+        "thresholdMs": 8
+      }
+    ]
+  },
+  "lite": {
+    "renderMode": "search-light",
+    "totalDurationMs": 277.175,
+    "filteredTreeDataMs": 23.4,
+    "flatRowStateMs": 0.7,
+    "autoExpandDecisionMs": 0.2,
+    "domCommitMs": 18.8,
+    "residualMs": 234.075,
+    "recordCount": 5,
+    "records": [
+      {
+        "scope": "BatchTable",
+        "name": "filteredTreeData",
+        "durationMs": 23.4,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "keyword": "pf-27j9in",
+        "searching": true,
+        "rootCount": 76
+      },
+      {
+        "scope": "BatchTable",
+        "name": "searchAutoExpandedRowKeys",
+        "durationMs": 0.2,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "page": 1,
+        "pageSize": 10,
+        "rootCount": 10,
+        "rowLimit": 160,
+        "searching": true
+      },
+      {
+        "scope": "BatchTable",
+        "name": "flatRowState",
+        "durationMs": 0.7,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "page": 1,
+        "pageSize": 10,
+        "rootCount": 10,
+        "rowLimit": 160,
+        "searching": true
+      },
+      {
+        "scope": "BatchTable",
+        "name": "flatRowState",
+        "durationMs": 0,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "page": 1,
+        "pageSize": 10,
+        "rootCount": 10,
+        "rowLimit": 160,
+        "searching": true
+      },
+      {
+        "scope": "BatchTable",
+        "name": "searchDomCommit",
+        "durationMs": 18.799999952316284,
+        "stage": "search-prefix:input",
+        "failed": false,
+        "reason": "search-first-screen",
+        "rows": 160,
+        "rowLimit": 160,
+        "searching": true,
+        "lightweight": true,
+        "thresholdMs": 8
+      }
+    ]
+  },
+  "delta": {
+    "totalDurationMs": 905.11,
+    "domCommitMs": 704.6,
+    "residualMs": 197.61
+  }
+}
