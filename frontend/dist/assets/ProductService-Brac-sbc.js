@@ -1,0 +1,1 @@
+import{t as e}from"./client-CNUjKXKP.js";var t=e(`ProductService`,`CheckProductExists`),n=e(`ProductService`,`CreateProduct`),r=e(`ProductService`,`DeleteProduct`);e(`ProductService`,`GetProductByID`);var i=e(`ProductService`,`ListProducts`);e(`ProductService`,`UpdateProduct`);export{i,n,r,t};

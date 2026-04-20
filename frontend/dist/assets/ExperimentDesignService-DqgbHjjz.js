@@ -1,0 +1,1 @@
+import{t as e}from"./client-CNUjKXKP.js";var t=e(`ExperimentDesignService`,`CreateExperimentDesign`),n=e(`ExperimentDesignService`,`DeleteExperimentDesign`);e(`ExperimentDesignService`,`GetExperimentDesignByID`);var r=e(`ExperimentDesignService`,`ListExperimentDesigns`),i=e(`ExperimentDesignService`,`UpdateExperimentDesign`);export{i,n,r,t};

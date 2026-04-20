@@ -1,0 +1,1 @@
+import{t as e}from"./client-CNUjKXKP.js";var t=e(`BatchService`,`CreateBatch`),n=e(`BatchService`,`DeleteBatch`),r=e(`BatchService`,`GetBatchByID`),i=e(`BatchService`,`ListBatches`),a=e(`BatchService`,`UpdateBatch`);export{a,i,n,r,t};
