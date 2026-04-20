@@ -1,0 +1,14 @@
+[Unit]
+Description=BioControl Local Binary Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=__BIOCONTROL_PROJECT_DIR__
+ExecStart=__BIOCONTROL_PROJECT_DIR__/start-local-foreground.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

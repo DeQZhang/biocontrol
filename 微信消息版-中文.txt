@@ -1,0 +1,21 @@
+BioControl 安装说明：
+
+1. 先下载对应系统安装包：
+Linux：biocontrol-linux-20260420.tar.gz
+Linux 无 Logo：biocontrol-linux-no-logo-20260420.tar.gz
+macOS：biocontrol-mac-20260420.tar.gz
+Windows：biocontrol-win-20260420.zip
+
+2. 启动：
+Linux/macOS Docker：bash start-docker.sh
+Linux/macOS 本机：bash start-local.sh
+Windows Docker：powershell -ExecutionPolicy Bypass -File .\start-docker.ps1
+Windows 本机：powershell -ExecutionPolicy Bypass -File .\start-local.ps1
+
+补充：安装后默认可试用 1 个月；需要正式授权时，把系统里显示的物理地址（MAC）发给管理员。
+
+3. 停止：
+Linux/macOS Docker：bash stop-docker.sh
+Linux/macOS 本机：bash stop-local.sh
+Windows Docker：powershell -ExecutionPolicy Bypass -File .\stop-docker.ps1
+Windows 本机：powershell -ExecutionPolicy Bypass -File .\stop-local.ps1

@@ -1,0 +1,7 @@
+appname = biocontrol
+runmode = dev
+httpport = 8080
+copyrequestbody = true
+
+# 许可证加密种子（需与密码机中该产品的 SecretSeed 一致）
+license_seed = zdq001

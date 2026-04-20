@@ -1,0 +1,1 @@
+import{t as e}from"./client-CNUjKXKP.js";var t=e(`TankService`,`CheckTankExists`),n=e(`TankService`,`CreateTank`),r=e(`TankService`,`DeleteTank`);e(`TankService`,`GetTankByID`);var i=e(`TankService`,`ListTanks`);e(`TankService`,`UpdateTank`);export{i,n,r,t};

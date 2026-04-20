@@ -1,0 +1,1 @@
+import{t as e}from"./client-CNUjKXKP.js";var t=e(`BatchChartService`,`GetBatchChartData`);export{t};
